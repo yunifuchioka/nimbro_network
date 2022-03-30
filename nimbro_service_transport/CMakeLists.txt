@@ -8,7 +8,6 @@ find_package(catkin REQUIRED COMPONENTS
 	topic_tools
 	message_generation
 	rostest
-	qt_gui_cpp
 )
 
 find_package(catch_ros)
@@ -116,11 +115,8 @@ if(catch_ros_FOUND)
 	add_rostest(test/test_tcp.test)
 endif()
 
-install(TARGETS service_server service_client udp_server udp_client service_widget
+install(TARGETS service_server service_client udp_server udp_client
 	ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 	LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 	RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-)
-install(FILES plugin.xml
-    DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )

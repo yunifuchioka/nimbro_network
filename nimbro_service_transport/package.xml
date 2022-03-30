@@ -14,13 +14,7 @@
 
 	<build_depend>message_generation</build_depend>
 
-	<depend>rqt_gui</depend>
-
 	<!-- soft dependency for unit tests -->
 	<depend>catch_ros</depend>
-
-	<export>
-		<rqt_gui plugin="${prefix}/plugin.xml" />
-	</export>
 
 </package>
