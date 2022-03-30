@@ -26,6 +26,8 @@ Sender::Sender(ros::NodeHandle nh)
  : m_nh{std::move(nh)}
 {
 	m_nh.getParam("strip_prefix", m_stripPrefix);
+	m_enableSendingLowPriorityTopicService = m_nh.advertiseService("enable_sending_low_priority_topics", &Sender::enableSendingLowPriorityTopics, this);
+	m_disableSendingLowPriorityTopicService = m_nh.advertiseService("disable_sending_low_priority_topics", &Sender::disableSendingLowPriorityTopics, this);
 
 	if(m_nh.hasParam("tcp_topics"))
 	{
@@ -160,6 +162,24 @@ void Sender::initUDP(XmlRpc::XmlRpcValue& topicList)
 		sub->registerCallback(m_threadPool.createInputHandler(sink));
 		m_subs.emplace_back(std::move(sub));
 	}
+}
+
+bool Sender::enableSendingLowPriorityTopics(std_srvs::Trigger::Request& request, std_srvs::Trigger::Response& response) {
+	for (auto& sub : m_subs) {
+			sub->setSendingLowPriorityTopic(true);
+		}
+		response.success = true;
+		ROS_INFO("[sender::enableSendingLowPriorityTopics]: enable sending low priority topics");
+	return true;
+}
+
+bool Sender::disableSendingLowPriorityTopics(std_srvs::Trigger::Request& request, std_srvs::Trigger::Response& response) {
+	for (auto& sub : m_subs) {
+			sub->setSendingLowPriorityTopic(false);
+		}
+		response.success = true;
+		ROS_INFO("[sender::disableSendingLowPriorityTopics]: disable sending low priority topics");
+	return true;
 }
 
 void Sender::advertiseTopics()

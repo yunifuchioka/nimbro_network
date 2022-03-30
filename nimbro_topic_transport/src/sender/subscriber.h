@@ -21,6 +21,7 @@ public:
 
 	void registerCallback(const Callback& cb);
 	void sendAdvertisement(const std::string& typeHint = {});
+	void setSendingLowPriorityTopic(bool value);
 
 	std::string rosTopicName() const
 	{ return m_subscriber.getTopic(); }
@@ -45,6 +46,12 @@ private:
 	std::string m_type;
 	std::string m_md5;
 	uint32_t m_counter = 0;
+
+	//! @name stop sending marked topics control logic
+	//@{
+	bool m_sendLowPrioriyTopic = true;
+	bool m_topicIsLowPriority = false;
+	//@}
 };
 
 }

@@ -10,6 +10,8 @@
 #include "packetizer.h"
 #include "compressor.h"
 #include "../thread_pool.h"
+#include <ros/ros.h>
+#include <std_srvs/Trigger.h>
 
 namespace nimbro_topic_transport
 {
@@ -29,6 +31,9 @@ private:
 	void initTCP(XmlRpc::XmlRpcValue& topicList);
 	void initUDP(XmlRpc::XmlRpcValue& topicList);
 
+	bool enableSendingLowPriorityTopics(std_srvs::Trigger::Request& request, std_srvs::Trigger::Response& response);
+	bool disableSendingLowPriorityTopics(std_srvs::Trigger::Request& request, std_srvs::Trigger::Response& response);
+
 	ros::NodeHandle m_nh;
 	std::vector<std::unique_ptr<Subscriber>> m_subs;
 	std::unique_ptr<TCPSender> m_tcp_sender;
@@ -45,6 +50,9 @@ private:
 
 	std::thread m_topicThread;
 	ros::SteadyTimer m_advertiseTimer;
+
+	ros::ServiceServer m_enableSendingLowPriorityTopicService;
+	ros::ServiceServer m_disableSendingLowPriorityTopicService;
 };
 
 }
