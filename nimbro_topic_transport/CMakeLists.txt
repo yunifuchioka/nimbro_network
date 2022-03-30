@@ -139,9 +139,6 @@ target_link_libraries(action_proxy
 	${catkin_LIBRARIES}
 )
 
-# GUI
-add_subdirectory(src/gui)
-
 # Tests
 if(catch_ros_FOUND)
 	include_directories(${catch_ros_INCLUDE_DIRS})
@@ -175,7 +172,4 @@ install(TARGETS nimbro_topic_transport sender receiver action_proxy transceiver
 
 install(FILES utils/get_msg_def.py
         DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-)
-install(FILES rqt_plugin.xml bandwidth_plugin.xml
-    DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )

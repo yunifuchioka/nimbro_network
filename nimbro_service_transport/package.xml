@@ -10,11 +10,10 @@
 	<buildtool_depend>catkin</buildtool_depend>
 	<depend>roscpp</depend>
 	<depend>topic_tools</depend>
-	<depend>rqt_gui_cpp</depend>
 
 	<build_depend>message_generation</build_depend>
 
 	<!-- soft dependency for unit tests -->
-	<depend>catch_ros</depend>
+	<!-- depend>catch_ros</depend -->
 
 </package>
