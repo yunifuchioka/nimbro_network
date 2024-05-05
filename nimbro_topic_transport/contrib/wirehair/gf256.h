@@ -67,8 +67,9 @@
 
 #if !defined(GF256_TARGET_MOBILE)
     // Note: MSVC currently only supports SSSE3 but not AVX2
-    #include <tmmintrin.h> // SSSE3: _mm_shuffle_epi8
-    #include <emmintrin.h> // SSE2
+    // #include <tmmintrin.h> // SSSE3: _mm_shuffle_epi8
+    // #include <emmintrin.h> // SSE2
+    #include "sse2neon.h"
 #endif // GF256_TARGET_MOBILE
 
 #if defined(HAVE_ARM_NEON_H)

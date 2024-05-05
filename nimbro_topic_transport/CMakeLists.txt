@@ -67,7 +67,7 @@ target_link_libraries(nimbro_topic_transport
 	${ZSTD_LIBRARIES}
 )
 target_compile_options(nimbro_topic_transport PUBLIC
-	"-march=native"
+	"-march=armv8-a+fp+simd"
 )
 target_include_directories(nimbro_topic_transport PRIVATE
 	${CMAKE_CURRENT_BINARY_DIR}

@@ -237,22 +237,22 @@ static void _cpuid(unsigned int cpu_info[4U], const unsigned int cpu_info_type)
         return; /* LCOV_EXCL_LINE */
     }
 # endif
-# ifdef __i386__
-    __asm__ __volatile__ ("xchgl %%ebx, %k1; cpuid; xchgl %%ebx, %k1" :
-                          "=a" (cpu_info[0]), "=&r" (cpu_info[1]),
-                          "=c" (cpu_info[2]), "=d" (cpu_info[3]) :
-                          "0" (cpu_info_type), "2" (0U));
-# elif defined(__x86_64__)
-    __asm__ __volatile__ ("xchgq %%rbx, %q1; cpuid; xchgq %%rbx, %q1" :
-                          "=a" (cpu_info[0]), "=&r" (cpu_info[1]),
-                          "=c" (cpu_info[2]), "=d" (cpu_info[3]) :
-                          "0" (cpu_info_type), "2" (0U));
-# else
-    __asm__ __volatile__ ("cpuid" :
-                          "=a" (cpu_info[0]), "=b" (cpu_info[1]),
-                          "=c" (cpu_info[2]), "=d" (cpu_info[3]) :
-                          "0" (cpu_info_type), "2" (0U));
-# endif
+// # ifdef __i386__
+//     __asm__ __volatile__ ("xchgl %%ebx, %k1; cpuid; xchgl %%ebx, %k1" :
+//                           "=a" (cpu_info[0]), "=&r" (cpu_info[1]),
+//                           "=c" (cpu_info[2]), "=d" (cpu_info[3]) :
+//                           "0" (cpu_info_type), "2" (0U));
+// # elif defined(__x86_64__)
+//     __asm__ __volatile__ ("xchgq %%rbx, %q1; cpuid; xchgq %%rbx, %q1" :
+//                           "=a" (cpu_info[0]), "=&r" (cpu_info[1]),
+//                           "=c" (cpu_info[2]), "=d" (cpu_info[3]) :
+//                           "0" (cpu_info_type), "2" (0U));
+// # else
+//     __asm__ __volatile__ ("cpuid" :
+//                           "=a" (cpu_info[0]), "=b" (cpu_info[1]),
+//                           "=c" (cpu_info[2]), "=d" (cpu_info[3]) :
+//                           "0" (cpu_info_type), "2" (0U));
+// # endif
 #endif
 }
 
